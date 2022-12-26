@@ -1,18 +1,5 @@
-import Head from "next/head";
-import Image from "next/image";
+import LandingPageContainer from "pageContainer/LandingPageContainer";
 
-export default function Home() {
-  return (
-    <div>
-      <Head>
-        <title>The Dress Code</title>
-        <meta name="description" content="Description should be here...." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const LandingPage = () => <LandingPageContainer />;
 
-      <main></main>
-
-      <footer></footer>
-    </div>
-  );
-}
+export default LandingPage;
