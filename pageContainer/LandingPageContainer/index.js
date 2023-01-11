@@ -1,14 +1,27 @@
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
+import Router from "next/router";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
 const LandingPageContainer = () => {
+  const handleClick = () => {
+    Router.push("/onboarding/personal-details");
+  };
+
   return (
     <div style={{ background: "green" }}>
       LANDING PAGE CONTAINER...
       <br />
-      <Image src="/images/shoes-flat-lay.jpg" height={200} width={200} />
+      <Image
+        src="/images/shoes-flat-lay.jpg"
+        alt="Landing Image"
+        height={200}
+        width={200}
+      />
       <Button
+        onClick={() => {
+          handleClick();
+        }}
         variant="next"
         rightIcon={<HiOutlineArrowNarrowRight size="24px" />}
       >

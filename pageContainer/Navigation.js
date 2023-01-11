@@ -1,5 +1,6 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import Router from "next/router";
 
 const Navigation = () => {
   return (
@@ -9,11 +10,11 @@ const Navigation = () => {
           my={3}
           mr={2}
           src="https://pic.onlinewebfonts.com/svg/img_181677.png"
-          h={5}
-          w={4}
+          h={10}
+          w={6}
           alt="logo"
         />
-        <Text mY={3} minW="max-content">
+        <Text onClick={()=>Router.push("/onboarding/personal-details")} my={3} minW="max-content">
           THE DRESS CODE
         </Text>
       </Box>

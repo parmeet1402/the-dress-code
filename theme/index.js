@@ -17,6 +17,7 @@ const theme = extendTheme({
   components: {
     Button,
     Input,
+    NumberInput: { ...Input },
     Select: { ...Input },
   },
 });
