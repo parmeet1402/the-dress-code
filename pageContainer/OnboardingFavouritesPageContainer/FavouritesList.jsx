@@ -3,9 +3,9 @@ import router from "next/router";
 import { useState } from "react";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { onboardingSelectors, useOnboardingState } from "state";
-import CreatorCard from "./CreatorCard";
+import FavouritesCard from "./FavouritesCard";
 
-const CreatorList = () => {
+const FavouritesList = () => {
   const [clickedElements, setClickedElements] = useState([]);
   const [counter, setCounter] = useState(0);
   const [selectedCreators, setSelectedCreators] = useState([]);
@@ -38,7 +38,6 @@ const CreatorList = () => {
 
   const handleFormSubmit = () => {
     if (counter > 2) {
-      console.log({ creators: selectedCreators });
       updateCreators(selectedCreators);
       router.push("/onboarding/success");
     } else {
@@ -47,12 +46,13 @@ const CreatorList = () => {
   };
 
   return (
-    <Flex direction="column" h="calc(100vh - 64px - 43px)">
+    <Flex direction="column" marginY="10">
+      {/* h="calc(100vh - 64px - 43px)" */}
       <Flex overflowX="scroll">
         {creators.map((creatorData, index) => {
           return (
             <div key={index} onClick={() => handleCounter(index)}>
-              <CreatorCard data={creatorData} />
+              <FavouritesCard data={creatorData} />
             </div>
           );
         })}
@@ -75,4 +75,4 @@ const CreatorList = () => {
   );
 };
 
-export default CreatorList;
+export default FavouritesList;

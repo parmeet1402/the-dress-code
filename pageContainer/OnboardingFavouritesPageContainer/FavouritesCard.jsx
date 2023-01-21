@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const { Flex, Heading, Image, Icon } = require("@chakra-ui/react");
+import { Flex, Heading, Icon, Image } from "@chakra-ui/react";
 
-const CreatorCard = ({ data }) => {
+const FavouritesCard = ({ data }) => {
   const [selected, setSelected] = useState(false);
 
   const handleClick = () => {
@@ -37,4 +37,4 @@ const CreatorCard = ({ data }) => {
     </Flex>
   );
 };
-export default CreatorCard;
+export default FavouritesCard;

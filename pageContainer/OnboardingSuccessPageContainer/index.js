@@ -8,7 +8,7 @@ import Router from "next/router";
 
 const OnboardingSuccessPageContainer = () => {
   return (
-    <>
+    <Flex direction="column" px={10}>
       <Navigation />
       <Flex direction="column" align="center" gap="4">
         <Heading size="4xl" color="#623C3C" w="100%" textAlign="center">
@@ -20,7 +20,7 @@ const OnboardingSuccessPageContainer = () => {
         </Text>
         <Box position="fixed" bottom="30px" right="30px">
           <Button
-            onClick={() => Router.push("/")}
+            onClick={() => Router.push("/dashboard")}
             // onClick={() => Router.push("/dashboard")}
             variant="next"
             rightIcon={<HiOutlineArrowNarrowRight size="24px" />}
@@ -29,7 +29,7 @@ const OnboardingSuccessPageContainer = () => {
           </Button>
         </Box>
       </Flex>
-    </>
+    </Flex>
   );
 };
 

@@ -5,7 +5,6 @@ import {
   Flex,
   FormControl,
   FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Heading,
   Icon,
@@ -17,6 +16,7 @@ import {
   NumberInputStepper,
   Select,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 
 //importing react-icons
@@ -30,14 +30,12 @@ import { useState } from "react";
 import {
   validateEmail,
   validateForm,
-  // validateForm,
   validateHeightInFeet,
   validateHeightInInches,
   validateName,
 } from "pageContainer/Validation";
 
 //importing abstracted methods from store
-import { redirect } from "next/dist/server/api-utils";
 import { onboardingSelectors, useOnboardingState } from "state";
 
 //creating an error css for handeling errors
@@ -71,6 +69,9 @@ const InputForm = () => {
     complexion: "",
   });
 
+  //intializing toast
+  const toast = useToast();
+
   //--------------------methods to handle submitted data and error data of form -----------------------//
 
   //METHOD TO DISPLAY ERRORS
@@ -78,7 +79,7 @@ const InputForm = () => {
     return value !== "" ? (
       <FormErrorMessage>{value}</FormErrorMessage>
     ) : (
-      <Box h="23.33px"></Box>
+      <Box h="23.33px" w="100%"></Box>
     );
   };
 
@@ -89,9 +90,9 @@ const InputForm = () => {
   const handleNameErrors = (name) => {
     const result = validateName(name);
     if (!(result === "")) {
-      setErrors({ name: result });
+      setErrors((prevErrState) => ({ ...prevErrState, name: result }));
     } else {
-      setErrors({ name: "" });
+      setErrors((prevErrState) => ({ ...prevErrState, name: "" }));
     }
   };
 
@@ -102,9 +103,9 @@ const InputForm = () => {
   const handleEmailErrors = (email) => {
     const result = validateEmail(email);
     if (!(result === "")) {
-      setErrors({ email: result });
+      setErrors((prevErrState) => ({ ...prevErrState, email: result }));
     } else {
-      setErrors({ email: "" });
+      setErrors((prevErrState) => ({ ...prevErrState, email: "" }));
     }
   };
 
@@ -119,11 +120,12 @@ const InputForm = () => {
     });
   };
   const handleHeightInFeetErrors = (ft) => {
+    console.log({ feet: ft });
     const result = validateHeightInFeet(ft);
     if (!(result === "")) {
-      setErrors({ heightInFeet: result });
+      setErrors((prevErrState) => ({ ...prevErrState, heightInFeet: result }));
     } else {
-      setErrors({ heightInFeet: "" });
+      setErrors((prevErrState) => ({ ...prevErrState, heightInFeet: "" }));
     }
   };
 
@@ -140,9 +142,12 @@ const InputForm = () => {
   const handleHeightInInchesErrors = (inches) => {
     const result = validateHeightInInches(inches);
     if (!(result === "")) {
-      setErrors({ heightInInches: result });
+      setErrors((prevErrState) => ({
+        ...prevErrState,
+        heightInInches: result,
+      }));
     } else {
-      setErrors({ heightInInches: "" });
+      setErrors((prevErrState) => ({ ...prevErrState, heightInInches: "" }));
     }
   };
 
@@ -163,6 +168,7 @@ const InputForm = () => {
   };
 
   const handleFormSubmit = (e) => {
+    e.preventDefault();
     const formErrors = validateForm(personalDetails);
     // console.log({ name: personalDetails.userName });
     if (formErrors === "") {
@@ -179,20 +185,39 @@ const InputForm = () => {
         result: formErrors,
         localState: personalDetails,
       });
-      alert("Fill the required fields first");
+      // alert("Fill the required fields first");
+
+      toast({
+        title: "Error!!",
+        description: "Fill the required fields first",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
     }
   };
 
   //----------------------------------MAIN - COMPONENT-----------------------------------------//
 
+  //----------------------------------Logging errs-----------------------------------------//
+  console.log({ errors, personalDetails });
+
   return (
-    <Flex as="form" autoComplete="off" direction="column" px={10}>
+    <Flex
+      as="form"
+      autoComplete="off"
+      noValidate
+      direction="column"
+      minH="calc(100vh - 65px)"
+      onSubmit={handleFormSubmit}
+    >
       <Heading size="3xl" color="#623C3C" w="100%" textAlign="center">
         Let's get you onboard!
       </Heading>
 
-      <Flex justify="space-around" width="100%" p={5}>
-        <FormControl isRequired isInvalid={errors.name !== ""} p={5}>
+      <Flex justify="space-around" width="100%">
+        <FormControl isRequired isInvalid={errors.name !== ""}>
           <FormLabel>Name</FormLabel>
           <Input
             minLength={3}
@@ -205,7 +230,7 @@ const InputForm = () => {
           {displayErrors(errors.name)}
         </FormControl>
 
-        <FormControl isRequired isInvalid={errors.email !== ""} p={5}>
+        <FormControl isRequired isInvalid={errors.email !== ""}>
           <FormLabel>Email</FormLabel>
           <Input
             onChange={(e) => handleEmailSubmit(e.target.value)}
@@ -218,9 +243,9 @@ const InputForm = () => {
         </FormControl>
       </Flex>
 
-      <Flex justify="space-between" alignItems="center" width="100%" p={5}>
+      <Flex justify="space-between" alignItems="center" width="100%">
         {/* HEIGHT */}
-        <Flex p={5} width="50%" direction="column">
+        <Flex width="50%" direction="column">
           <FormControl isRequired>
             <FormLabel>Height</FormLabel>
           </FormControl>
@@ -286,7 +311,7 @@ const InputForm = () => {
         </Flex>
 
         {/* BODY - TYPE */}
-        <Flex p={5} width="50%">
+        <Flex width="50%">
           <FormControl>
             <FormLabel>Body Type</FormLabel>
             <Select onChange={(e) => handleBodyType(e.target.value)}>
@@ -299,7 +324,7 @@ const InputForm = () => {
         </Flex>
       </Flex>
 
-      <Flex width="100%" direction="column" p={5}>
+      <Flex width="100%" direction="column">
         <Text>Complexion</Text>
         <Box>
           <Icon
@@ -352,15 +377,16 @@ const InputForm = () => {
           />
         </Box>
       </Flex>
-      <Flex justify="flex-end">
+      <Box position="absolute" bottom="30px" right="30px">
         <Button
-          onClick={(e) => handleFormSubmit(e)}
+          type="submit"
+          // onClick={(e) => handleFormSubmit(e)}
           variant="next"
           rightIcon={<HiOutlineArrowNarrowRight size="24px" />}
         >
           Next
         </Button>
-      </Flex>
+      </Box>
     </Flex>
   );
 };
