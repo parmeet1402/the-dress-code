@@ -6,6 +6,7 @@ import colors from "./foundations/colors";
 
 // Components
 import Button from "./components/Button";
+import Input from "./components/Input";
 
 const theme = extendTheme({
   colors,
@@ -15,6 +16,9 @@ const theme = extendTheme({
   },
   components: {
     Button,
+    Input,
+    NumberInput: { ...Input },
+    Select: { ...Input },
   },
 });
 

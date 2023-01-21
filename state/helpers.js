@@ -1,4 +1,4 @@
-import { persist } from "zustand/middleware";
+// import { persist } from "zustand/middleware";
 import produce from "immer";
 import * as R from "ramda";
 import create from "zustand";
@@ -26,4 +26,6 @@ export const immer = config => (set, get, api) =>
     api
   );
 
-export const createStore = R.pipe(log, immer, persist, create);
+export const createStore = R.pipe(log, immer, create);
+
+//persist was used.

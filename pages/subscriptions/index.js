@@ -1,4 +1,4 @@
-import SubscriptionsPageContainer from "pageContainer/SubscribePageContainer";
+import SubscriptionsPageContainer from "pageContainer/SubscriptionsPageContainer";
 
 const SubscriptionsPage = () => <SubscriptionsPageContainer />;
 export default SubscriptionsPage;
