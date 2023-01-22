@@ -6,6 +6,8 @@ import {
   getDoc,
   getDocs,
   getFirestore,
+  query,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -52,4 +54,17 @@ export const addCreatorDoc = async obj => {
     // console.error(error);
     return null;
   }
+};
+
+export const getUserByEmail = async emailId => {
+  const userCollectionRef = collection(db, "user");
+  const q = query(userCollectionRef, where("email", "==", emailId));
+  const snapshot = getDocs(q);
+  return snapshot;
+};
+
+export const addUserDoc = async userObj => {
+  const userColRef = collection(db, "user");
+  const snapshot = await addDoc(userColRef, userObj);
+  return snapshot;
 };
