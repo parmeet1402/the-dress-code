@@ -1,12 +1,21 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
+
 import Footer from "pageContainer/Footer";
 import Navigation from "pageContainer/Navigation";
+import PlanCard from "./PlanCard";
+
 import { useEffect, useState } from "react";
 import { onboardingSelectors, useOnboardingState } from "state";
 
+const getPlans = () => {
+  return useOnboardingState(
+    onboardingSelectors.selectOnboardingStateSubscriptionPlans
+  );
+};
+
 const SingleSubscriptionPageContainer = ({ subscriptionId }) => {
   const [selectedSubscriptions, setSelectedSubscriptions] = useState({});
-
+  const plans = getPlans();
   const fetchedDataForSubscriptions = useOnboardingState(
     onboardingSelectors.selectOnboardingStateSubscriptions
   );
@@ -15,16 +24,20 @@ const SingleSubscriptionPageContainer = ({ subscriptionId }) => {
       (singleData) => singleData.name === subscriptionId
     );
     setSelectedSubscriptions(result);
-  }, [selectedSubscriptions]);
+  }, [selectedSubscriptions, plans]);
 
   return selectedSubscriptions ? (
     <Flex direction="column" gap={10}>
       <Navigation />
-      <Flex direction="column" align="center">
-        <Heading>{selectedSubscriptions.name}'s Active Plans</Heading>
-        <Text>Plan1</Text>
-        <Text>Plan2</Text>
-        <Text>Plan3</Text>
+      <Flex direction="column" gap={10}>
+        <Heading textAlign="center">
+          {selectedSubscriptions.name}'s Active Plans
+        </Heading>
+        <Flex direction="column" gap={5}>
+          {plans.map((singlePlan, index) => {
+            return <PlanCard data={singlePlan} key={index} />;
+          })}
+        </Flex>
       </Flex>
       <Footer />
     </Flex>

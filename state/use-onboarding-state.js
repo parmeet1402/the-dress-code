@@ -1,6 +1,7 @@
 import { createStore } from "state/helpers";
 
 import { creators } from "./creatorsData";
+import subscriptionPlans from "./subscriptionPlans";
 import { wardrobeThemes } from "./wardrobeThemes";
 
 import { subscriptions } from "./subscriptions";
@@ -18,6 +19,8 @@ const useOnboardingState = createStore((set) => ({
   creators,
 
   wardrobeThemes,
+
+  subscriptionPlans,
 
   selectedQuantity: {
     outdoorCasual: 0,
@@ -85,6 +88,11 @@ const useOnboardingState = createStore((set) => ({
       draft.subscriptions.find((data) => data.name === id);
     });
   },
+  getPlanById:(id)=>{
+    set((draft)=>{
+      draft.plans.find((singlePlan)=>singlePlan.planId === id)
+    })
+  },
 }));
 
 export const selectors = {
@@ -106,6 +114,8 @@ export const selectors = {
   selectOnboardingStateSubscriptions: (state) => state.subscriptions,
   selectOnboardingStateFindSingleSubscription: (state) =>
     state.findSingleSubscription,
+  selectOnboardingStateSubscriptionPlans: (state) => state.subscriptionPlans,
+  selectOnboardingStateSubscriptionPlanById: (state) => state.getPlanById,
 };
 
 export default useOnboardingState;
