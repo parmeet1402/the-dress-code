@@ -11,8 +11,8 @@ import Input from "./components/Input";
 const theme = extendTheme({
   colors,
   fonts: {
-    heading: "Mukta",
-    body: "Mukta",
+    heading: "EB Garamond",
+    body: "Montserrat",
   },
   components: {
     Button,
