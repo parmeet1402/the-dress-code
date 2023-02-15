@@ -1,11 +1,16 @@
-import { Button, Flex, Icon } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
 
 import { BsChevronRight } from "react-icons/bs";
 
 const test = () => {
   return (
-    <>
-      <Flex my="3em" justify="center" align="center" gap="10px" wrap="wrap">
+    <Flex
+      direction="column-reverse"
+      gap="10px"
+      border="40px solid black"
+      p={10}
+    >
+      <Flex my="3em" justify="center" align="center" gap="10px">
         <Flex direction="column" justify="center" align="center" gap="50px">
           <Button variant="primary" size="mobileRegular">
             mobileRegular
@@ -49,10 +54,46 @@ const test = () => {
           </Button>
         </Flex>
       </Flex>
-      <Flex justify="center">
-        <Icon as={BsChevronRight} boxSize="50px" />
+      <Flex gap="20px" justify="center">
+        <IconButton
+          icon={<BsChevronRight />}
+          size="desktopLarge"
+          variant="primary"
+        />
+        <IconButton
+          icon={<BsChevronRight />}
+          size="desktopRegular"
+          variant="outline"
+        />
+        <IconButton
+          icon={<BsChevronRight />}
+          size="mobileLarge"
+          variant="ghost"
+        />
+        <IconButton
+          icon={<BsChevronRight />}
+          size="mobileRegular"
+          variant="outline"
+        />
       </Flex>
-    </>
+      <Flex gap="20px" justify="space-around">
+        <Flex direction="column">
+          <Heading textStyle="h1">Hello</Heading>
+          <Heading variant="h6">Hello</Heading>
+          <Heading variant="h5">Hello</Heading>
+          <Heading variant="h4">Hello</Heading>
+          <Heading variant="h3">Hello</Heading>
+          <Heading variant="h2">Hello</Heading>
+          <Heading variant="h1">Hello</Heading>
+        </Flex>
+
+        <Flex direction="column">
+          <Text variant="caption">I am text</Text>
+          <Text variant="body2">I am text</Text>
+          <Text variant="body1">I am text</Text>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 export default test;

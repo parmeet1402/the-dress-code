@@ -194,6 +194,9 @@ const InputForm = () => {
         duration: 5000,
         isClosable: true,
         position: "bottom-left",
+        containerStyle: {
+          backgroundColor: "#f00",
+        },
       });
     }
   };
