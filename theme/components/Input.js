@@ -5,12 +5,13 @@ const Input = {
   // The base styles for each part
   baseStyle: {
     field: {
-      border: `1px solid ${colors.black}`,
+      border: `2px solid ${colors.gray}`,
+      color: colors.gray,
     },
   },
   // The size styles for each part
   sizes: {
-    md: { field: { borderRadius: "none" } },
+    md: { field: { borderRadius: "0.5em" } },
   },
   // The variant styles for each part
   variants: {},

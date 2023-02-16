@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  IconButton,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 
 import { BsChevronRight } from "react-icons/bs";
 
@@ -92,6 +100,10 @@ const test = () => {
           <Text variant="body2">I am text</Text>
           <Text variant="body1">I am text</Text>
         </Flex>
+      </Flex>
+      <Flex>
+        <Input type="email" placeholder="Enter Email Here!" />
+        <Input type="password" placeholder="Enter Password Here!" />
       </Flex>
     </Flex>
   );
