@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Checkbox,
   Flex,
   Heading,
   IconButton,
@@ -8,17 +9,21 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import QuizModal from "pageContainer/QuizModal";
+
 import { BsChevronRight } from "react-icons/bs";
 
 const test = () => {
   return (
     <Flex
-      direction="column-reverse"
+    //   direction="column-reverse"
       gap="10px"
       border="40px solid black"
       p={10}
+      h="100vh"
     >
-      <Flex my="3em" justify="center" align="center" gap="10px">
+      <QuizModal />
+      {/* <Flex my="3em" justify="center" align="center" gap="10px">
         <Flex direction="column" justify="center" align="center" gap="50px">
           <Button variant="primary" size="mobileRegular">
             mobileRegular
@@ -101,10 +106,20 @@ const test = () => {
           <Text variant="body1">I am text</Text>
         </Flex>
       </Flex>
-      <Flex>
-        <Input type="email" placeholder="Enter Email Here!" />
-        <Input type="password" placeholder="Enter Password Here!" />
-      </Flex>
+      <Flex direction="column">
+        <Flex justify="space-around" gap="30px">
+          <Input type="email" placeholder="Enter Email Here!" />
+          <Input type="password" placeholder="Enter Password Here!" />
+          <Input type="datetime-local" />
+        </Flex>
+        <Flex justify="space-around" gap="30px">
+          <Checkbox defaultChecked colorScheme="black">
+            Enter Email Here!
+          </Checkbox>
+          <Input type="password" placeholder="Enter Password Here!" />
+          <Input type="datetime-local" />
+        </Flex>
+      </Flex> */}
     </Flex>
   );
 };
