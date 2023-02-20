@@ -33,11 +33,23 @@ const StyleQuizPageContainer = () => {
   };
 
   return (
-    <Flex direction="column" minH="100vh" p="0 3.5em" bgColor="#FEF0EB">
-      <Flex as="form" direction="column" m="2em">
+    <Flex
+      direction="column"
+      minH="100vh"
+      p={[0, 0, "2em", "4em", "4em"]}
+      bgColor="#FEF0EB"
+    >
+      <Flex as="form" direction="column">
         {/* Height Question */}
         <FormControl isRequired p="20px 10px">
-          <Flex align="baseline" gap="1em" wrap="wrap">
+          <Flex
+            // ------------------not working--------------------------------
+            justify={["column", "column", "column", "row", "row"]}
+            align="baseline"
+            gap="1em"
+            wrap="wrap"
+            bgColor="red"
+          >
             <FormLabel as="text" fontWeight="bold">
               How tall are you?
             </FormLabel>
