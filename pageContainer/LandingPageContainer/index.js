@@ -1,11 +1,11 @@
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
-import Router from "next/router";
+import router from "next/router";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
 const LandingPageContainer = () => {
   const handleClick = () => {
-    Router.push("/onboarding/personal-details");
+    router.push("/onboarding/personal-details");
   };
 
   return (

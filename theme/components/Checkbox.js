@@ -1,5 +1,5 @@
 import colors from "theme/foundations/colors";
-const Input = {
+const Checkbox = {
   // The parts of the component
   parts: [],
   // The base styles for each part
@@ -11,7 +11,7 @@ const Input = {
   },
   // The size styles for each part
   sizes: {
-    md: { field: { borderRadius: "0.2em" } },
+    md: { field: { borderRadius: "0.5em" } },
   },
   // The variant styles for each part
   variants: {},
@@ -21,4 +21,4 @@ const Input = {
   },
 };
 
-export default Input;
+export default Checkbox;
